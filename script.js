@@ -9,7 +9,7 @@ document.getElementById('search-button').addEventListener('click', function() {
             document.getElementById('country-info').innerHTML = `
                 <h2>${country.name.common}</h2>
                 <p>Capital: ${country.capital ? country.capital[0] : 'N/A'}</p>
-                <p>Population: ${country.population}</p>
+                <p>Population: ${country.population.toLocaleString()}</p>
                 <p>Region: ${country.region}</p>
                 <img src="${country.flags.png}" alt="${country.name.common}">
             `;
