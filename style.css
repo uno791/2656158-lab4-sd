@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+label, input, button {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 8px;
+    width: 250px;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#country-info, #bordering-countries {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.country-flag {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.bordering-country {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.bordering-country img {
+    width: 50px;
+    height: auto;
+    border: 1px solid #ccc;
+}
