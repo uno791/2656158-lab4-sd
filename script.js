@@ -36,21 +36,28 @@ function displayCountryInfo(country) {
 }
 
 function fetchBorders(borders) {
-    const borderPromises = borders.map(border => 
-        fetch(`https://restcountries.com/v3.1/alpha/${border}`).then(res => res.json())
-    );
+    let borderingCountriesHTML = '';
+    let completedRequests = 0;
 
-    Promise.all(borderPromises)
-        .then(borderData => {
-            const borderingCountries = borderData.map(data => data[0]);
-            document.getElementById('bordering-countries').innerHTML = borderingCountries.map(country => `
-                <div class="bordering-country">
-                    <img src="${country.flags.png}" alt="Flag of ${country.name.common}">
-                    <p>${country.name.common}</p>
-                </div>
-            `).join('');
-        })
-        .catch(error => {
-            document.getElementById('bordering-countries').innerHTML = `<p>Error loading bordering countries: ${error.message}</p>`;
-        });
+    borders.forEach(border => {
+        fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+            .then(response => response.json())
+            .then(data => {
+                const country = data[0];
+                borderingCountriesHTML += `
+                    <figure>
+                        <img src="${country.flags.png}" alt="Flag of ${country.name.common}">
+                        <figcaption>${country.name.common}</figcaption>
+                    </figure>
+                `;
+                completedRequests++;
+                if (completedRequests === borders.length) {
+                    document.getElementById('bordering-countries').innerHTML = borderingCountriesHTML;
+                }
+            })
+            .catch(error => {
+                document.getElementById('bordering-countries').innerHTML = `<p>Couldn't load bordering countries: ${error.message}</p>`;
+            });
+    });
 }
+
